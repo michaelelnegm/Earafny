@@ -19,12 +19,12 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             background: rgba(255,255,255,0.05);
             backdrop-filter: blur(20px);
@@ -32,6 +32,7 @@
             padding: 35px 30px;
             border: 1px solid rgba(255,255,255,0.1);
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            margin-top: 20px;
         }
 
         /* ============================================
@@ -62,12 +63,42 @@
             color: #aaa;
             font-size: 1.1rem;
             margin-top: 5px;
-            font-weight: 400;
         }
 
-        .header .sub span {
-            color: #ffd200;
+        /* ============================================
+           أزرار التبديل
+           ============================================ */
+        .tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
             font-weight: 700;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            border-color: #f7971e;
+            box-shadow: 0 5px 30px rgba(247, 151, 30, 0.3);
+        }
+
+        .tab-btn:hover {
+            transform: scale(1.03);
         }
 
         /* ============================================
@@ -173,7 +204,7 @@
         }
 
         /* ============================================
-           الأسئلة (تظهر بعد التسجيل)
+           الأسئلة
            ============================================ */
         #questionsSection {
             display: none;
@@ -298,6 +329,16 @@
             box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
         }
 
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 30px rgba(231, 76, 60, 0.4);
+        }
+
         /* ============================================
            النتيجة
            ============================================ */
@@ -329,12 +370,114 @@
             border-radius: 12px;
         }
 
-        #resultSection pre::-webkit-scrollbar {
-            width: 5px;
+        /* ============================================
+           لوحة الأدمن
+           ============================================ */
+        #adminPanel {
+            display: none;
         }
-        #resultSection pre::-webkit-scrollbar-thumb {
-            background: #f7971e;
-            border-radius: 10px;
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .admin-stat-box {
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .admin-stat-box .num {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd200;
+            display: block;
+        }
+
+        .admin-stat-box .label {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .admin-table th {
+            background: rgba(247, 151, 30, 0.15);
+            color: #ffd200;
+            padding: 12px 15px;
+            text-align: right;
+            border-bottom: 2px solid rgba(247, 151, 30, 0.2);
+            font-size: 0.9rem;
+        }
+
+        .admin-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: #ddd;
+            font-size: 0.85rem;
+            vertical-align: top;
+        }
+
+        .admin-table tr:hover td {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .admin-table .answers-preview {
+            max-width: 250px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+
+        .admin-table .badge {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .badge-male {
+            background: rgba(52, 152, 219, 0.2);
+            color: #5dade2;
+        }
+
+        .badge-female {
+            background: rgba(231, 76, 60, 0.2);
+            color: #ec7063;
+        }
+
+        .admin-login {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .admin-login input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin: 5px;
+            min-width: 180px;
+        }
+
+        .admin-login input:focus {
+            border-color: #f7971e;
         }
 
         /* ============================================
@@ -362,26 +505,14 @@
                 padding: 12px 20px;
                 min-width: 100px;
             }
-        }
 
-        @media (max-width: 400px) {
-            .header h1 {
-                font-size: 1.5rem;
+            .admin-table {
+                font-size: 0.8rem;
             }
 
-            .register-box .gender-group label {
-                padding: 6px 14px;
-                font-size: 0.85rem;
-            }
-
-            .question {
-                padding: 14px 14px;
-            }
-
-            .btn {
-                font-size: 0.85rem;
-                padding: 10px 15px;
-                min-width: 80px;
+            .admin-table th,
+            .admin-table td {
+                padding: 8px 10px;
             }
         }
     </style>
@@ -400,60 +531,113 @@
     </div>
 
     <!-- ============================================
-    نموذج التسجيل
+    أزرار التبديل
     ============================================ -->
-    <div class="register-box" id="registerBox">
-        <span class="label">✨ أدخل بياناتك وابدأ اللعبة</span>
-        <div class="input-row">
-            <input type="text" id="userName" placeholder="اسمك..." />
-            <input type="text" id="partnerName" placeholder="اسم شريكك..." />
-        </div>
-        <div class="gender-group">
-            <input type="radio" name="gender" id="genderMale" value="male" checked />
-            <label for="genderMale">👨 ذكر</label>
-            <input type="radio" name="gender" id="genderFemale" value="female" />
-            <label for="genderFemale">👩 أنثى</label>
-        </div>
-        <button class="btn-start" onclick="startGame()">🚀 ابدأ اللعبة</button>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('game')" id="tabGame">
+            <i class="fas fa-gamepad"></i> اللعبة
+        </button>
+        <button class="tab-btn" onclick="switchTab('admin')" id="tabAdmin">
+            <i class="fas fa-crown"></i> الأدمن
+        </button>
     </div>
 
     <!-- ============================================
-    الأسئلة
+    قسم اللعبة
     ============================================ -->
-    <div id="questionsSection">
+    <div id="gameSection">
 
-        <div id="questionsContainer">
-            <!-- سيتم توليد الأسئلة بواسطة JavaScript -->
+        <!-- نموذج التسجيل -->
+        <div class="register-box" id="registerBox">
+            <span class="label">✨ أدخل بياناتك وابدأ اللعبة</span>
+            <div class="input-row">
+                <input type="text" id="userName" placeholder="اسمك..." />
+                <input type="text" id="partnerName" placeholder="اسم شريكك..." />
+            </div>
+            <div class="gender-group">
+                <input type="radio" name="gender" id="genderMale" value="male" checked />
+                <label for="genderMale">👨 ذكر</label>
+                <input type="radio" name="gender" id="genderFemale" value="female" />
+                <label for="genderFemale">👩 أنثى</label>
+            </div>
+            <button class="btn-start" onclick="startGame()">🚀 ابدأ اللعبة</button>
         </div>
 
-        <!-- ============================================
-        الأزرار
-        ============================================ -->
-        <div class="btn-group">
-            <button class="btn btn-primary" onclick="showAnswers()">
-                📤 عرض إجاباتي
+        <!-- الأسئلة -->
+        <div id="questionsSection">
+            <div id="questionsContainer"></div>
+
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="showAnswers()">
+                    📤 عرض إجاباتي
+                </button>
+                <button class="btn btn-success" onclick="exportAnswers()">
+                    📋 نسخ الكل
+                </button>
+                <button class="btn btn-secondary" onclick="clearAll()">
+                    🗑️ مسح الكل
+                </button>
+            </div>
+
+            <div id="resultSection">
+                <h2>💛 إجاباتي</h2>
+                <pre id="resultData"></pre>
+                <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
+                    <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="flex: 1; min-width: 120px;">
+                        <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> مشاركة على واتساب
+                    </button>
+                    <button class="btn btn-primary" onclick="copyResult()" style="flex: 1; min-width: 120px; background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                        📋 نسخ النص
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    قسم الأدمن
+    ============================================ -->
+    <div id="adminPanel">
+
+        <div class="admin-login" id="adminLogin">
+            <h3 style="color:#ffd200; margin-bottom:15px;">🔐 دخول الأدمن</h3>
+            <input type="password" id="adminPassword" placeholder="كلمة السر..." />
+            <button class="btn-start" onclick="adminLogin()" style="margin-top:10px;">
+                <i class="fas fa-sign-in-alt"></i> دخول
             </button>
-            <button class="btn btn-success" onclick="exportAnswers()">
-                📋 نسخ الكل
-            </button>
-            <button class="btn btn-secondary" onclick="clearAll()">
-                🗑️ مسح الكل
-            </button>
+            <p style="color:#666; font-size:0.8rem; margin-top:10px;">كلمة السر: admin123</p>
         </div>
 
-        <!-- ============================================
-        النتيجة
-        ============================================ -->
-        <div id="resultSection">
-            <h2>💛 إجاباتي</h2>
-            <pre id="resultData"></pre>
-            <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
-                <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="flex: 1; min-width: 120px;">
-                    <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> مشاركة على واتساب
+        <div id="adminContent" style="display:none;">
+            <div class="admin-stats" id="adminStats"></div>
+
+            <div style="display:flex; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+                <button class="btn btn-success" onclick="exportAdminData()">
+                    <i class="fas fa-download"></i> تصدير البيانات
                 </button>
-                <button class="btn btn-primary" onclick="copyResult()" style="flex: 1; min-width: 120px; background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
-                    📋 نسخ النص
+                <button class="btn btn-danger" onclick="clearAllData()">
+                    <i class="fas fa-trash"></i> مسح الكل
                 </button>
+                <button class="btn btn-secondary" onclick="adminLogout()">
+                    <i class="fas fa-sign-out-alt"></i> خروج
+                </button>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>المرسل</th>
+                            <th>الجنس</th>
+                            <th>الشريك</th>
+                            <th>عدد الإجابات</th>
+                            <th>الإجابات</th>
+                            <th>التاريخ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="adminTableBody"></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -465,7 +649,7 @@ JavaScript
 ============================================ -->
 <script>
     // ============================================
-    // الأسئلة العامة (تناسب الجميع)
+    // الأسئلة العامة
     // ============================================
     const QUESTIONS = [
         "إيه هو تاريخ ما عرفنا بعض فيه؟",
@@ -495,6 +679,28 @@ JavaScript
     ];
 
     let userData = {};
+    const ADMIN_PASSWORD = 'admin123';
+    let isAdminLoggedIn = false;
+
+    // ============================================
+    // تبديل الأقسام
+    // ============================================
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+        if (tab === 'game') {
+            document.getElementById('tabGame').classList.add('active');
+            document.getElementById('gameSection').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+        } else {
+            document.getElementById('tabAdmin').classList.add('active');
+            document.getElementById('gameSection').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            if (isAdminLoggedIn) {
+                loadAdminData();
+            }
+        }
+    }
 
     // ============================================
     // بدء اللعبة
@@ -509,15 +715,11 @@ JavaScript
             return;
         }
 
-        userData = { userName, partnerName, gender };
+        userData = { userName, partnerName, gender, timestamp: new Date().toISOString() };
 
-        // إخفاء نموذج التسجيل
         document.getElementById('registerBox').style.display = 'none';
-
-        // عرض الأسئلة
         document.getElementById('questionsSection').style.display = 'block';
 
-        // توليد الأسئلة
         const container = document.getElementById('questionsContainer');
         container.innerHTML = '';
 
@@ -532,16 +734,13 @@ JavaScript
             container.appendChild(div);
         });
 
-        // إضافة Event Listeners للحفظ التلقائي
         document.querySelectorAll('.q-input').forEach(input => {
             input.addEventListener('input', saveProgress);
             input.addEventListener('change', saveProgress);
         });
 
-        // تحميل البيانات المحفوظة
         loadProgress();
 
-        // اختصار Enter
         document.querySelectorAll('.q-input').forEach((input, index, arr) => {
             input.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
@@ -556,12 +755,11 @@ JavaScript
             });
         });
 
-        // التمرير للأسئلة
         document.getElementById('questionsSection').scrollIntoView({ behavior: 'smooth' });
     }
 
     // ============================================
-    // جلب جميع الإجابات
+    // جلب الإجابات
     // ============================================
     function getAnswers() {
         const inputs = document.querySelectorAll('.q-input');
@@ -591,83 +789,28 @@ JavaScript
         resultData.textContent = text;
         resultSection.style.display = 'block';
         resultSection.scrollIntoView({ behavior: 'smooth' });
+
+        // حفظ في قاعدة البيانات (localStorage)
+        saveToDatabase();
     }
 
     // ============================================
-    // نسخ الإجابات
+    // حفظ في قاعدة البيانات
     // ============================================
-    function exportAnswers() {
+    function saveToDatabase() {
         const answers = getAnswers();
-        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
-        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
-        text += '========================\n\n';
-        for (const [key, value] of Object.entries(answers)) {
-            text += `السؤال ${key}: ${value}\n`;
-        }
-        text += '\n========================\n';
-        text += '🤍 شكراً لمشاركتك!';
+        const data = {
+            id: Date.now(),
+            user: userData.userName,
+            partner: userData.partnerName,
+            gender: userData.gender,
+            answers: answers,
+            timestamp: new Date().toISOString()
+        };
 
-        navigator.clipboard.writeText(text).then(() => {
-            alert('✅ تم نسخ الإجابات!');
-        }).catch(() => {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            alert('✅ تم نسخ الإجابات!');
-        });
-    }
-
-    // ============================================
-    // مشاركة على واتساب
-    // ============================================
-    function shareWhatsApp() {
-        const answers = getAnswers();
-        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
-        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
-        text += '========================\n\n';
-        for (const [key, value] of Object.entries(answers)) {
-            text += `السؤال ${key}: ${value}\n`;
-        }
-        text += '\n========================\n';
-        text += '🤍 شكراً لمشاركتك!';
-
-        const encoded = encodeURIComponent(text);
-        window.open(`https://wa.me/?text=${encoded}`, '_blank');
-    }
-
-    // ============================================
-    // نسخ النتيجة
-    // ============================================
-    function copyResult() {
-        const resultData = document.getElementById('resultData');
-        const text = resultData.textContent;
-
-        navigator.clipboard.writeText(text).then(() => {
-            alert('✅ تم نسخ الإجابات!');
-        }).catch(() => {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            alert('✅ تم نسخ الإجابات!');
-        });
-    }
-
-    // ============================================
-    // مسح الكل
-    // ============================================
-    function clearAll() {
-        if (confirm('متأكد تمسح كل الإجابات؟')) {
-            const inputs = document.querySelectorAll('.q-input');
-            inputs.forEach(input => input.value = '');
-            document.getElementById('resultSection').style.display = 'none';
-            localStorage.removeItem('quizAnswers');
-        }
+        let db = JSON.parse(localStorage.getItem('quizDatabase')) || [];
+        db.push(data);
+        localStorage.setItem('quizDatabase', JSON.stringify(db));
     }
 
     // ============================================
@@ -696,14 +839,147 @@ JavaScript
                         }
                     });
                 }
-            } catch (e) {
-                console.log('خطأ في تحميل البيانات');
-            }
+            } catch (e) {}
         }
     }
 
-    console.log('💛 اعرفني - لعبة الحب للجميع');
-    console.log('🤍 أتمنى لك حباً جميلاً!');
+    // ============================================
+    // مشاركة واتساب
+    // ============================================
+    function shareWhatsApp() {
+        const answers = getAnswers();
+        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
+        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
+        text += '========================\n\n';
+        for (const [key, value] of Object.entries(answers)) {
+            text += `السؤال ${key}: ${value}\n`;
+        }
+        text += '\n========================\n';
+        text += '🤍 شكراً لمشاركتك!';
+
+        window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    // ============================================
+    // نسخ النتيجة
+    // ============================================
+    function copyResult() {
+        const text = document.getElementById('resultData').textContent;
+        navigator.clipboard.writeText(text).then(() => alert('✅ تم النسخ!'));
+    }
+
+    function exportAnswers() {
+        const answers = getAnswers();
+        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
+        for (const [key, value] of Object.entries(answers)) {
+            text += `السؤال ${key}: ${value}\n`;
+        }
+        navigator.clipboard.writeText(text).then(() => alert('✅ تم النسخ!'));
+    }
+
+    // ============================================
+    // مسح الكل
+    // ============================================
+    function clearAll() {
+        if (confirm('متأكد تمسح كل الإجابات؟')) {
+            document.querySelectorAll('.q-input').forEach(i => i.value = '');
+            document.getElementById('resultSection').style.display = 'none';
+            localStorage.removeItem('quizAnswers');
+        }
+    }
+
+    // ============================================
+    // لوحة الأدمن
+    // ============================================
+    function adminLogin() {
+        const pass = document.getElementById('adminPassword').value;
+        if (pass === ADMIN_PASSWORD) {
+            isAdminLoggedIn = true;
+            document.getElementById('adminLogin').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            loadAdminData();
+        } else {
+            alert('❌ كلمة السر خطأ!');
+        }
+    }
+
+    function adminLogout() {
+        isAdminLoggedIn = false;
+        document.getElementById('adminLogin').style.display = 'block';
+        document.getElementById('adminContent').style.display = 'none';
+        document.getElementById('adminPassword').value = '';
+    }
+
+    function loadAdminData() {
+        const db = JSON.parse(localStorage.getItem('quizDatabase')) || [];
+        const tbody = document.getElementById('adminTableBody');
+        const stats = document.getElementById('adminStats');
+
+        // إحصائيات
+        const totalUsers = db.length;
+        const maleCount = db.filter(d => d.gender === 'male').length;
+        const femaleCount = db.filter(d => d.gender === 'female').length;
+
+        stats.innerHTML = `
+                    <div class="admin-stat-box"><span class="num">${totalUsers}</span><span class="label">إجمالي المشاركات</span></div>
+                    <div class="admin-stat-box"><span class="num">${maleCount}</span><span class="label">👨 ذكور</span></div>
+                    <div class="admin-stat-box"><span class="num">${femaleCount}</span><span class="label">👩 إناث</span></div>
+                `;
+
+        if (db.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#666;">لا توجد بيانات حالياً</td></tr>`;
+            return;
+        }
+
+        tbody.innerHTML = db.map((item, index) => {
+            const answersText = Object.entries(item.answers)
+                .map(([k, v]) => `س${k}: ${v}`)
+                .join(' | ');
+
+            const genderText = item.gender === 'male' ? 'ذكر' : 'أنثى';
+            const genderBadge = item.gender === 'male' ? 'badge-male' : 'badge-female';
+            const date = new Date(item.timestamp).toLocaleString('ar-EG');
+
+            return `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td><strong>${item.user}</strong></td>
+                            <td><span class="badge ${genderBadge}">${genderText}</span></td>
+                            <td>${item.partner}</td>
+                            <td>${Object.keys(item.answers).length}</td>
+                            <td><span class="answers-preview" title="${answersText}">${answersText.substring(0, 50)}${answersText.length > 50 ? '...' : ''}</span></td>
+                            <td style="font-size:0.75rem;color:#888;">${date}</td>
+                        </tr>
+                    `;
+        }).join('');
+    }
+
+    function exportAdminData() {
+        const db = JSON.parse(localStorage.getItem('quizDatabase')) || [];
+        if (db.length === 0) {
+            alert('لا توجد بيانات للتصدير!');
+            return;
+        }
+
+        const text = JSON.stringify(db, null, 2);
+        navigator.clipboard.writeText(text).then(() => {
+            alert('✅ تم نسخ البيانات!');
+        });
+    }
+
+    function clearAllData() {
+        if (confirm('⚠️ متأكد تمسح كل البيانات نهائياً؟')) {
+            localStorage.removeItem('quizDatabase');
+            loadAdminData();
+            alert('✅ تم مسح كل البيانات!');
+        }
+    }
+
+    // ============================================
+    // تشغيل عند التحميل
+    // ============================================
+    console.log('💛 اعرفني - مع لوحة الأدمن');
+    console.log('🔐 كلمة السر: admin123');
 </script>
 
 </body>
