@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💛 اعرفني - مايكل &amp; لولو</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 35px 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        /* ============================================
+           الهيدر
+           ============================================ */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .header .sub {
+            color: #aaa;
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .header .sub span {
+            color: #ffd200;
+            font-weight: 700;
+        }
+
+        .header .emoji-big {
+            font-size: 3rem;
+            display: block;
+            -webkit-text-fill-color: initial;
+        }
+
+        /* ============================================
+           الأسئلة
+           ============================================ */
+        .question {
+            background: rgba(255,255,255,0.04);
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            border-right: 4px solid #f7971e;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateX(-5px);
+        }
+
+        .question .q-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            font-weight: 900;
+            font-size: 0.8rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .question .q-text {
+            color: #eee;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .question .q-input {
+            width: 100%;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .question .q-input:focus {
+            border-color: #f7971e;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .question .q-input::placeholder {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           الأزرار
+           ============================================ */
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Tajawal', sans-serif;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 30px rgba(247, 151, 30, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: #aaa;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00b894, #00cec9);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 30px rgba(0, 206, 201, 0.4);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: #fff;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        /* ============================================
+           النتيجة
+           ============================================ */
+        #resultSection {
+            margin-top: 25px;
+            display: none;
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        #resultSection h2 {
+            color: #ffd200;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #resultSection pre {
+            color: #a8d8ea;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+            max-height: 400px;
+            overflow-y: auto;
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 12px;
+        }
+
+        #resultSection pre::-webkit-scrollbar {
+            width: 5px;
+        }
+        #resultSection pre::-webkit-scrollbar-thumb {
+            background: #f7971e;
+            border-radius: 10px;
+        }
+
+        /* ============================================
+           التجاوب
+           ============================================ */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .question .q-text {
+                font-size: 0.95rem;
+            }
+
+            .btn {
+                font-size: 0.95rem;
+                padding: 12px 20px;
+                min-width: 100px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .question {
+                padding: 14px 14px;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+                padding: 10px 15px;
+                min-width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ============================================
+    الهيدر
+    ============================================ -->
+    <div class="header">
+        <span class="emoji-big">💛</span>
+        <h1>اعرفني</h1>
+        <p class="sub">مايكل <span>&amp;</span> لولو 🤍</p>
+        <p style="color: #888; font-size: 0.9rem; margin-top: 5px;">خلينا نشوف مين يعرف التاني كويس 😉</p>
+    </div>
+
+    <!-- ============================================
+    الأسئلة
+    ============================================ -->
+    <div id="questionsContainer">
+        <!-- 1 -->
+        <div class="question">
+            <span class="q-number">1</span>
+            <div class="q-text">إيه هو تاريخ ما عرفنا بعض فيه؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="1">
+        </div>
+
+        <!-- 2 -->
+        <div class="question">
+            <span class="q-number">2</span>
+            <div class="q-text">إيه هو تاريخ ميلادي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="2">
+        </div>
+
+        <!-- 3 -->
+        <div class="question">
+            <span class="q-number">3</span>
+            <div class="q-text">إيه هي الأكلة المفضلة عندي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="3">
+        </div>
+
+        <!-- 4 -->
+        <div class="question">
+            <span class="q-number">4</span>
+            <div class="q-text">إيه هو المشروب المفضل عندي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="4">
+        </div>
+
+        <!-- 5 -->
+        <div class="question">
+            <span class="q-number">5</span>
+            <div class="q-text">إيه هي الرياضة اللي بحبها؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="5">
+        </div>
+
+        <!-- 6 -->
+        <div class="question">
+            <span class="q-number">6</span>
+            <div class="q-text">إيه هو الحيوان المفضل عندي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="6">
+        </div>
+
+        <!-- 7 -->
+        <div class="question">
+            <span class="q-number">7</span>
+            <div class="q-text">إيه هو اللون المفضل عندي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="7">
+        </div>
+
+        <!-- 8 -->
+        <div class="question">
+            <span class="q-number">8</span>
+            <div class="q-text">إيه هي الحاجة اللي بتخليني سعيد؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="8">
+        </div>
+
+        <!-- 9 -->
+        <div class="question">
+            <span class="q-number">9</span>
+            <div class="q-text">إيه هو المكان اللي نفسي أزوره؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="9">
+        </div>
+
+        <!-- 10 -->
+        <div class="question">
+            <span class="q-number">10</span>
+            <div class="q-text">إيه هي أغنية بحبها؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="10">
+        </div>
+
+        <!-- 11 -->
+        <div class="question">
+            <span class="q-number">11</span>
+            <div class="q-text">إيه هو فيلمي المفضل؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="11">
+        </div>
+
+        <!-- 12 -->
+        <div class="question">
+            <span class="q-number">12</span>
+            <div class="q-text">إيه هي حاجة بحبها في نفسي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="12">
+        </div>
+
+        <!-- 13 -->
+        <div class="question">
+            <span class="q-number">13</span>
+            <div class="q-text">إيه هي حاجة بحبها فيك؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="13">
+        </div>
+
+        <!-- 14 -->
+        <div class="question">
+            <span class="q-number">14</span>
+            <div class="q-text">إيه هو أحلى موقف جمعنا؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="14">
+        </div>
+
+        <!-- 15 -->
+        <div class="question">
+            <span class="q-number">15</span>
+            <div class="q-text">إيه هي الكلمة اللي بتحبها مني؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="15">
+        </div>
+
+        <!-- 16 -->
+        <div class="question">
+            <span class="q-number">16</span>
+            <div class="q-text">إيه هو أحلى يوم في حياتي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="16">
+        </div>
+
+        <!-- 17 -->
+        <div class="question">
+            <span class="q-number">17</span>
+            <div class="q-text">إيه هي الهدية اللي نفسي فيها؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="17">
+        </div>
+
+        <!-- 18 -->
+        <div class="question">
+            <span class="q-number">18</span>
+            <div class="q-text">إيه هي صفتي المفضلة في نفسي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="18">
+        </div>
+
+        <!-- 19 -->
+        <div class="question">
+            <span class="q-number">19</span>
+            <div class="q-text">لو تصفني في ٣ كلمات، هتقول إيه؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="19">
+        </div>
+
+        <!-- 20 -->
+        <div class="question">
+            <span class="q-number">20</span>
+            <div class="q-text">إيه هي الذكرى اللي مش هتنساها معايا؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="20">
+        </div>
+
+        <!-- 21 -->
+        <div class="question">
+            <span class="q-number">21</span>
+            <div class="q-text">إيه هو الشيء اللي بتعمله وبتخليني أعرف إنك بتحبني؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="21">
+        </div>
+
+        <!-- 22 -->
+        <div class="question">
+            <span class="q-number">22</span>
+            <div class="q-text">إيه هي أكثر حاجة بتحبها في شخصيتي؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="22">
+        </div>
+
+        <!-- 23 -->
+        <div class="question">
+            <span class="q-number">23</span>
+            <div class="q-text">إيه هو أحلى مكان قابلتني فيه؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="23">
+        </div>
+
+        <!-- 24 -->
+        <div class="question">
+            <span class="q-number">24</span>
+            <div class="q-text">إيه هي الحاجة اللي بتضحكني دايماً؟</div>
+            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="24">
+        </div>
+    </div>
+
+    <!-- ============================================
+    الأزرار
+    ============================================ -->
+    <div class="btn-group">
+        <button class="btn btn-primary" onclick="showAnswers()">
+            📤 عرض إجاباتي
+        </button>
+        <button class="btn btn-success" onclick="exportAnswers()">
+            📋 نسخ الكل
+        </button>
+        <button class="btn btn-secondary" onclick="clearAll()">
+            🗑️ مسح الكل
+        </button>
+    </div>
+
+    <!-- ============================================
+    النتيجة + زر واتساب
+    ============================================ -->
+    <div id="resultSection">
+        <h2>💛 إجاباتي</h2>
+        <pre id="resultData"></pre>
+        <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
+            <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="flex: 1; min-width: 120px;">
+                <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> مشاركة على واتساب
+            </button>
+            <button class="btn btn-primary" onclick="copyResult()" style="flex: 1; min-width: 120px; background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                📋 نسخ النص
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================
+Font Awesome للأيقونات
+============================================ -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- ============================================
+JavaScript
+============================================ -->
+<script>
+    // ============================================
+    // جلب جميع الإجابات
+    // ============================================
+    function getAnswers() {
+        const inputs = document.querySelectorAll('.q-input');
+        const answers = {};
+        inputs.forEach(input => {
+            const qNum = input.getAttribute('data-q');
+            answers[qNum] = input.value.trim() || '(فارغ)';
+        });
+        return answers;
+    }
+
+    // ============================================
+    // عرض الإجابات
+    // ============================================
+    function showAnswers() {
+        const answers = getAnswers();
+        const resultSection = document.getElementById('resultSection');
+        const resultData = document.getElementById('resultData');
+
+        let text = '';
+        for (const [key, value] of Object.entries(answers)) {
+            text += `السؤال ${key}: ${value}\n`;
+        }
+
+        resultData.textContent = text;
+        resultSection.style.display = 'block';
+        resultSection.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ============================================
+    // نسخ الإجابات
+    // ============================================
+    function exportAnswers() {
+        const answers = getAnswers();
+        let text = '💛 اعرفني - مايكل & لولو\n';
+        text += '========================\n\n';
+        for (const [key, value] of Object.entries(answers)) {
+            text += `السؤال ${key}: ${value}\n`;
+        }
+        text += '\n========================\n';
+        text += '🤍 شكراً لمشاركتك!';
+
+        navigator.clipboard.writeText(text).then(() => {
+            alert('✅ تم نسخ الإجابات!');
+        }).catch(() => {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('✅ تم نسخ الإجابات!');
+        });
+    }
+
+    // ============================================
+    // مشاركة على واتساب
+    // ============================================
+    function shareWhatsApp() {
+        const answers = getAnswers();
+        let text = '💛 اعرفني - مايكل & لولو 🤍\n';
+        text += '========================\n\n';
+        for (const [key, value] of Object.entries(answers)) {
+            text += `السؤال ${key}: ${value}\n`;
+        }
+        text += '\n========================\n';
+        text += '🤍 شكراً لمشاركتك!';
+
+        const encoded = encodeURIComponent(text);
+        window.open(`https://wa.me/?text=${encoded}`, '_blank');
+    }
+
+    // ============================================
+    // نسخ النتيجة (بديل)
+    // ============================================
+    function copyResult() {
+        const resultData = document.getElementById('resultData');
+        const text = resultData.textContent;
+
+        navigator.clipboard.writeText(text).then(() => {
+            alert('✅ تم نسخ الإجابات!');
+        }).catch(() => {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('✅ تم نسخ الإجابات!');
+        });
+    }
+
+    // ============================================
+    // مسح الكل
+    // ============================================
+    function clearAll() {
+        if (confirm('متأكد تمسح كل الإجابات؟')) {
+            const inputs = document.querySelectorAll('.q-input');
+            inputs.forEach(input => input.value = '');
+            document.getElementById('resultSection').style.display = 'none';
+            localStorage.removeItem('quizAnswers');
+        }
+    }
+
+    // ============================================
+    // حفظ تلقائي في localStorage
+    // ============================================
+    function saveProgress() {
+        const answers = getAnswers();
+        localStorage.setItem('quizAnswers', JSON.stringify(answers));
+    }
+
+    function loadProgress() {
+        const saved = localStorage.getItem('quizAnswers');
+        if (saved) {
+            try {
+                const answers = JSON.parse(saved);
+                const inputs = document.querySelectorAll('.q-input');
+                inputs.forEach(input => {
+                    const qNum = input.getAttribute('data-q');
+                    if (answers[qNum]) {
+                        input.value = answers[qNum];
+                    }
+                });
+            } catch (e) {
+                console.log('خطأ في تحميل البيانات');
+            }
+        }
+    }
+
+    // حفظ تلقائي عند تغيير أي حقل
+    document.querySelectorAll('.q-input').forEach(input => {
+        input.addEventListener('input', saveProgress);
+        input.addEventListener('change', saveProgress);
+    });
+
+    // تحميل البيانات عند فتح الصفحة
+    loadProgress();
+
+    // ============================================
+    // اختصار: Enter للانتقال للسؤال التالي
+    // ============================================
+    document.querySelectorAll('.q-input').forEach((input, index, arr) => {
+        input.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const next = arr[index + 1];
+                if (next) {
+                    next.focus();
+                } else {
+                    showAnswers();
+                }
+            }
+        });
+    });
+
+    console.log('💛 اعرفني - مايكل & لولو');
+    console.log('🤍 أتمنى لكما حباً أبدياً!');
+</script>
+
+</body>
+</html>
