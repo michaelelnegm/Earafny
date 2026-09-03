@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💛 اعرفني - مايكل &amp; لولو</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>💛 اعرفني - لعبة الحب</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -41,18 +42,27 @@
             margin-bottom: 30px;
         }
 
+        .header .emoji-big {
+            font-size: 3.5rem;
+            display: block;
+        }
+
         .header h1 {
-            font-size: 2.5rem;
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
             background: linear-gradient(135deg, #f7971e, #ffd200);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-weight: 900;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(247, 151, 30, 0.3);
         }
 
         .header .sub {
             color: #aaa;
             font-size: 1.1rem;
             margin-top: 5px;
+            font-weight: 400;
         }
 
         .header .sub span {
@@ -60,15 +70,115 @@
             font-weight: 700;
         }
 
-        .header .emoji-big {
-            font-size: 3rem;
+        /* ============================================
+           نموذج التسجيل
+           ============================================ */
+        .register-box {
+            background: rgba(255,255,255,0.04);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.06);
+            text-align: center;
+        }
+
+        .register-box .label {
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
             display: block;
-            -webkit-text-fill-color: initial;
+        }
+
+        .register-box .input-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .register-box .input-row input {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.06);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .register-box .input-row input:focus {
+            border-color: #f7971e;
+            background: rgba(255,255,255,0.08);
+        }
+
+        .register-box .input-row input::placeholder {
+            color: #666;
+        }
+
+        .register-box .gender-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .register-box .gender-group label {
+            color: #ccc;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 2px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .register-box .gender-group label:hover {
+            border-color: #f7971e;
+        }
+
+        .register-box .gender-group input[type="radio"] {
+            display: none;
+        }
+
+        .register-box .gender-group input[type="radio"]:checked+label {
+            border-color: #f7971e;
+            background: rgba(247, 151, 30, 0.15);
+            color: #ffd200;
+            box-shadow: 0 0 30px rgba(247, 151, 30, 0.1);
+        }
+
+        .btn-start {
+            margin-top: 15px;
+            padding: 14px 50px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a2e;
+            font-weight: 900;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 30px rgba(247, 151, 30, 0.4);
         }
 
         /* ============================================
-           الأسئلة
+           الأسئلة (تظهر بعد التسجيل)
            ============================================ */
+        #questionsSection {
+            display: none;
+        }
+
         .question {
             background: rgba(255,255,255,0.04);
             border-radius: 16px;
@@ -236,7 +346,11 @@
             }
 
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+            }
+
+            .register-box .input-row input {
+                min-width: 140px;
             }
 
             .question .q-text {
@@ -252,7 +366,12 @@
 
         @media (max-width: 400px) {
             .header h1 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
+            }
+
+            .register-box .gender-group label {
+                padding: 6px 14px;
+                font-size: 0.85rem;
             }
 
             .question {
@@ -277,225 +396,170 @@
     <div class="header">
         <span class="emoji-big">💛</span>
         <h1>اعرفني</h1>
-        <p class="sub">مايكل <span>&amp;</span> لولو 🤍</p>
-        <p style="color: #888; font-size: 0.9rem; margin-top: 5px;">خلينا نشوف مين يعرف التاني كويس 😉</p>
+        <p class="sub">لعبة الحب 🤍</p>
+    </div>
+
+    <!-- ============================================
+    نموذج التسجيل
+    ============================================ -->
+    <div class="register-box" id="registerBox">
+        <span class="label">✨ أدخل بياناتك وابدأ اللعبة</span>
+        <div class="input-row">
+            <input type="text" id="userName" placeholder="اسمك..." />
+            <input type="text" id="partnerName" placeholder="اسم شريكك..." />
+        </div>
+        <div class="gender-group">
+            <input type="radio" name="gender" id="genderMale" value="male" checked />
+            <label for="genderMale">👨 ذكر</label>
+            <input type="radio" name="gender" id="genderFemale" value="female" />
+            <label for="genderFemale">👩 أنثى</label>
+        </div>
+        <button class="btn-start" onclick="startGame()">🚀 ابدأ اللعبة</button>
     </div>
 
     <!-- ============================================
     الأسئلة
     ============================================ -->
-    <div id="questionsContainer">
-        <!-- 1 -->
-        <div class="question">
-            <span class="q-number">1</span>
-            <div class="q-text">إيه هو تاريخ ما عرفنا بعض فيه؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="1">
+    <div id="questionsSection">
+
+        <div id="questionsContainer">
+            <!-- سيتم توليد الأسئلة بواسطة JavaScript -->
         </div>
 
-        <!-- 2 -->
-        <div class="question">
-            <span class="q-number">2</span>
-            <div class="q-text">إيه هو تاريخ ميلادي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="2">
-        </div>
-
-        <!-- 3 -->
-        <div class="question">
-            <span class="q-number">3</span>
-            <div class="q-text">إيه هي الأكلة المفضلة عندي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="3">
-        </div>
-
-        <!-- 4 -->
-        <div class="question">
-            <span class="q-number">4</span>
-            <div class="q-text">إيه هو المشروب المفضل عندي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="4">
-        </div>
-
-        <!-- 5 -->
-        <div class="question">
-            <span class="q-number">5</span>
-            <div class="q-text">إيه هي الرياضة اللي بحبها؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="5">
-        </div>
-
-        <!-- 6 -->
-        <div class="question">
-            <span class="q-number">6</span>
-            <div class="q-text">إيه هو الحيوان المفضل عندي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="6">
-        </div>
-
-        <!-- 7 -->
-        <div class="question">
-            <span class="q-number">7</span>
-            <div class="q-text">إيه هو اللون المفضل عندي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="7">
-        </div>
-
-        <!-- 8 -->
-        <div class="question">
-            <span class="q-number">8</span>
-            <div class="q-text">إيه هي الحاجة اللي بتخليني سعيد؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="8">
-        </div>
-
-        <!-- 9 -->
-        <div class="question">
-            <span class="q-number">9</span>
-            <div class="q-text">إيه هو المكان اللي نفسي أزوره؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="9">
-        </div>
-
-        <!-- 10 -->
-        <div class="question">
-            <span class="q-number">10</span>
-            <div class="q-text">إيه هي أغنية بحبها؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="10">
-        </div>
-
-        <!-- 11 -->
-        <div class="question">
-            <span class="q-number">11</span>
-            <div class="q-text">إيه هو فيلمي المفضل؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="11">
-        </div>
-
-        <!-- 12 -->
-        <div class="question">
-            <span class="q-number">12</span>
-            <div class="q-text">إيه هي حاجة بحبها في نفسي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="12">
-        </div>
-
-        <!-- 13 -->
-        <div class="question">
-            <span class="q-number">13</span>
-            <div class="q-text">إيه هي حاجة بحبها فيك؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="13">
-        </div>
-
-        <!-- 14 -->
-        <div class="question">
-            <span class="q-number">14</span>
-            <div class="q-text">إيه هو أحلى موقف جمعنا؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="14">
-        </div>
-
-        <!-- 15 -->
-        <div class="question">
-            <span class="q-number">15</span>
-            <div class="q-text">إيه هي الكلمة اللي بتحبها مني؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="15">
-        </div>
-
-        <!-- 16 -->
-        <div class="question">
-            <span class="q-number">16</span>
-            <div class="q-text">إيه هو أحلى يوم في حياتي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="16">
-        </div>
-
-        <!-- 17 -->
-        <div class="question">
-            <span class="q-number">17</span>
-            <div class="q-text">إيه هي الهدية اللي نفسي فيها؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="17">
-        </div>
-
-        <!-- 18 -->
-        <div class="question">
-            <span class="q-number">18</span>
-            <div class="q-text">إيه هي صفتي المفضلة في نفسي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="18">
-        </div>
-
-        <!-- 19 -->
-        <div class="question">
-            <span class="q-number">19</span>
-            <div class="q-text">لو تصفني في ٣ كلمات، هتقول إيه؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="19">
-        </div>
-
-        <!-- 20 -->
-        <div class="question">
-            <span class="q-number">20</span>
-            <div class="q-text">إيه هي الذكرى اللي مش هتنساها معايا؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="20">
-        </div>
-
-        <!-- 21 -->
-        <div class="question">
-            <span class="q-number">21</span>
-            <div class="q-text">إيه هو الشيء اللي بتعمله وبتخليني أعرف إنك بتحبني؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="21">
-        </div>
-
-        <!-- 22 -->
-        <div class="question">
-            <span class="q-number">22</span>
-            <div class="q-text">إيه هي أكثر حاجة بتحبها في شخصيتي؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="22">
-        </div>
-
-        <!-- 23 -->
-        <div class="question">
-            <span class="q-number">23</span>
-            <div class="q-text">إيه هو أحلى مكان قابلتني فيه؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="23">
-        </div>
-
-        <!-- 24 -->
-        <div class="question">
-            <span class="q-number">24</span>
-            <div class="q-text">إيه هي الحاجة اللي بتضحكني دايماً؟</div>
-            <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="24">
-        </div>
-    </div>
-
-    <!-- ============================================
-    الأزرار
-    ============================================ -->
-    <div class="btn-group">
-        <button class="btn btn-primary" onclick="showAnswers()">
-            📤 عرض إجاباتي
-        </button>
-        <button class="btn btn-success" onclick="exportAnswers()">
-            📋 نسخ الكل
-        </button>
-        <button class="btn btn-secondary" onclick="clearAll()">
-            🗑️ مسح الكل
-        </button>
-    </div>
-
-    <!-- ============================================
-    النتيجة + زر واتساب
-    ============================================ -->
-    <div id="resultSection">
-        <h2>💛 إجاباتي</h2>
-        <pre id="resultData"></pre>
-        <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
-            <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="flex: 1; min-width: 120px;">
-                <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> مشاركة على واتساب
+        <!-- ============================================
+        الأزرار
+        ============================================ -->
+        <div class="btn-group">
+            <button class="btn btn-primary" onclick="showAnswers()">
+                📤 عرض إجاباتي
             </button>
-            <button class="btn btn-primary" onclick="copyResult()" style="flex: 1; min-width: 120px; background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
-                📋 نسخ النص
+            <button class="btn btn-success" onclick="exportAnswers()">
+                📋 نسخ الكل
             </button>
+            <button class="btn btn-secondary" onclick="clearAll()">
+                🗑️ مسح الكل
+            </button>
+        </div>
+
+        <!-- ============================================
+        النتيجة
+        ============================================ -->
+        <div id="resultSection">
+            <h2>💛 إجاباتي</h2>
+            <pre id="resultData"></pre>
+            <div style="display: flex; gap: 12px; margin-top: 15px; flex-wrap: wrap;">
+                <button class="btn btn-whatsapp" onclick="shareWhatsApp()" style="flex: 1; min-width: 120px;">
+                    <i class="fab fa-whatsapp" style="margin-left: 8px;"></i> مشاركة على واتساب
+                </button>
+                <button class="btn btn-primary" onclick="copyResult()" style="flex: 1; min-width: 120px; background: linear-gradient(135deg, #6c5ce7, #a29bfe);">
+                    📋 نسخ النص
+                </button>
+            </div>
         </div>
     </div>
 
 </div>
 
 <!-- ============================================
-Font Awesome للأيقونات
-============================================ -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-<!-- ============================================
 JavaScript
 ============================================ -->
 <script>
+    // ============================================
+    // الأسئلة العامة (تناسب الجميع)
+    // ============================================
+    const QUESTIONS = [
+        "إيه هو تاريخ ما عرفنا بعض فيه؟",
+        "إيه هو تاريخ ميلادي؟",
+        "إيه هي الأكلة المفضلة عندي؟",
+        "إيه هو المشروب المفضل عندي؟",
+        "إيه هي الرياضة اللي بحبها؟",
+        "إيه هو الحيوان المفضل عندي؟",
+        "إيه هو اللون المفضل عندي؟",
+        "إيه هي الحاجة اللي بتخليني سعيد؟",
+        "إيه هو المكان اللي نفسي أزوره؟",
+        "إيه هي أغنية بحبها؟",
+        "إيه هو فيلمي المفضل؟",
+        "إيه هي حاجة بحبها في نفسي؟",
+        "إيه هي حاجة بحبها فيك؟",
+        "إيه هو أحلى موقف جمعنا؟",
+        "إيه هي الكلمة اللي بتحبها مني؟",
+        "إيه هو أحلى يوم في حياتي؟",
+        "إيه هي الهدية اللي نفسي فيها؟",
+        "إيه هي صفتي المفضلة في نفسي؟",
+        "لو تصفني في ٣ كلمات، هتقول إيه؟",
+        "إيه هي الذكرى اللي مش هتنساها معايا؟",
+        "إيه هو الشيء اللي بتعمله وبيخليني أعرف إنك بتحبني؟",
+        "إيه هي أكثر حاجة بتحبها في شخصيتي؟",
+        "إيه هو أحلى مكان قابلتني فيه؟",
+        "إيه هي الحاجة اللي بتضحكني دايماً؟"
+    ];
+
+    let userData = {};
+
+    // ============================================
+    // بدء اللعبة
+    // ============================================
+    function startGame() {
+        const userName = document.getElementById('userName').value.trim();
+        const partnerName = document.getElementById('partnerName').value.trim();
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+
+        if (!userName || !partnerName) {
+            alert('من فضلك أدخل اسمك واسم شريكك!');
+            return;
+        }
+
+        userData = { userName, partnerName, gender };
+
+        // إخفاء نموذج التسجيل
+        document.getElementById('registerBox').style.display = 'none';
+
+        // عرض الأسئلة
+        document.getElementById('questionsSection').style.display = 'block';
+
+        // توليد الأسئلة
+        const container = document.getElementById('questionsContainer');
+        container.innerHTML = '';
+
+        QUESTIONS.forEach((q, index) => {
+            const div = document.createElement('div');
+            div.className = 'question';
+            div.innerHTML = `
+                        <span class="q-number">${index + 1}</span>
+                        <div class="q-text">${q}</div>
+                        <input class="q-input" type="text" placeholder="اكتب إجابتك..." data-q="${index + 1}" />
+                    `;
+            container.appendChild(div);
+        });
+
+        // إضافة Event Listeners للحفظ التلقائي
+        document.querySelectorAll('.q-input').forEach(input => {
+            input.addEventListener('input', saveProgress);
+            input.addEventListener('change', saveProgress);
+        });
+
+        // تحميل البيانات المحفوظة
+        loadProgress();
+
+        // اختصار Enter
+        document.querySelectorAll('.q-input').forEach((input, index, arr) => {
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const next = arr[index + 1];
+                    if (next) {
+                        next.focus();
+                    } else {
+                        showAnswers();
+                    }
+                }
+            });
+        });
+
+        // التمرير للأسئلة
+        document.getElementById('questionsSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
     // ============================================
     // جلب جميع الإجابات
     // ============================================
@@ -517,7 +581,9 @@ JavaScript
         const resultSection = document.getElementById('resultSection');
         const resultData = document.getElementById('resultData');
 
-        let text = '';
+        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
+        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
+        text += '========================\n\n';
         for (const [key, value] of Object.entries(answers)) {
             text += `السؤال ${key}: ${value}\n`;
         }
@@ -532,7 +598,8 @@ JavaScript
     // ============================================
     function exportAnswers() {
         const answers = getAnswers();
-        let text = '💛 اعرفني - مايكل & لولو\n';
+        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
+        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
         text += '========================\n\n';
         for (const [key, value] of Object.entries(answers)) {
             text += `السؤال ${key}: ${value}\n`;
@@ -558,7 +625,8 @@ JavaScript
     // ============================================
     function shareWhatsApp() {
         const answers = getAnswers();
-        let text = '💛 اعرفني - مايكل & لولو 🤍\n';
+        let text = `💛 اعرفني - ${userData.userName} & ${userData.partnerName}\n`;
+        text += `👤 ${userData.gender === 'male' ? 'ذكر' : 'أنثى'}\n`;
         text += '========================\n\n';
         for (const [key, value] of Object.entries(answers)) {
             text += `السؤال ${key}: ${value}\n`;
@@ -571,7 +639,7 @@ JavaScript
     }
 
     // ============================================
-    // نسخ النتيجة (بديل)
+    // نسخ النتيجة
     // ============================================
     function copyResult() {
         const resultData = document.getElementById('resultData');
@@ -603,59 +671,39 @@ JavaScript
     }
 
     // ============================================
-    // حفظ تلقائي في localStorage
+    // حفظ تلقائي
     // ============================================
     function saveProgress() {
         const answers = getAnswers();
-        localStorage.setItem('quizAnswers', JSON.stringify(answers));
+        const data = {
+            userData: userData,
+            answers: answers
+        };
+        localStorage.setItem('quizAnswers', JSON.stringify(data));
     }
 
     function loadProgress() {
         const saved = localStorage.getItem('quizAnswers');
         if (saved) {
             try {
-                const answers = JSON.parse(saved);
-                const inputs = document.querySelectorAll('.q-input');
-                inputs.forEach(input => {
-                    const qNum = input.getAttribute('data-q');
-                    if (answers[qNum]) {
-                        input.value = answers[qNum];
-                    }
-                });
+                const data = JSON.parse(saved);
+                if (data.answers) {
+                    const inputs = document.querySelectorAll('.q-input');
+                    inputs.forEach(input => {
+                        const qNum = input.getAttribute('data-q');
+                        if (data.answers[qNum]) {
+                            input.value = data.answers[qNum];
+                        }
+                    });
+                }
             } catch (e) {
                 console.log('خطأ في تحميل البيانات');
             }
         }
     }
 
-    // حفظ تلقائي عند تغيير أي حقل
-    document.querySelectorAll('.q-input').forEach(input => {
-        input.addEventListener('input', saveProgress);
-        input.addEventListener('change', saveProgress);
-    });
-
-    // تحميل البيانات عند فتح الصفحة
-    loadProgress();
-
-    // ============================================
-    // اختصار: Enter للانتقال للسؤال التالي
-    // ============================================
-    document.querySelectorAll('.q-input').forEach((input, index, arr) => {
-        input.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const next = arr[index + 1];
-                if (next) {
-                    next.focus();
-                } else {
-                    showAnswers();
-                }
-            }
-        });
-    });
-
-    console.log('💛 اعرفني - مايكل & لولو');
-    console.log('🤍 أتمنى لكما حباً أبدياً!');
+    console.log('💛 اعرفني - لعبة الحب للجميع');
+    console.log('🤍 أتمنى لك حباً جميلاً!');
 </script>
 
 </body>
